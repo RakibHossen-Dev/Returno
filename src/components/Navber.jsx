@@ -77,7 +77,7 @@ const Navber = () => {
                 <Link to="/allRecoveredItems">All Recovered Items</Link>
               </li>
               <li>
-                <a to="/addLostAndFoundItem">Add Lost & Found Item</a>
+                <Link to="/addLostAndFoundItem">Add Lost & Found Item</Link>
               </li>
             </ul>
           </div>
