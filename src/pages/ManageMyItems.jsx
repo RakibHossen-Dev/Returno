@@ -12,6 +12,7 @@ const ManageMyItems = () => {
   const { user } = useContext(authContext);
   const [myItems, setMyItems] = useState([]);
   const [startDate, setStartDate] = useState(new Date());
+  const [post, setPost] = useState({});
 
   useEffect(() => {
     fetchAllItems();
@@ -23,7 +24,7 @@ const ManageMyItems = () => {
     );
     setMyItems(data);
   };
-  console.log(myItems);
+  // console.log(myItems);
   const handleDeleteLostAndFoundItem = async (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -48,6 +49,72 @@ const ManageMyItems = () => {
       }
     });
   };
+
+  const handleUpdatePost = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.eamil.value;
+    const title = form.title.value;
+    const types = form.types.value;
+    const deadline = startDate;
+    const location = form.location.value;
+    const category = form.category.value;
+    const photo = form.photo.value;
+    const description = form.description.value;
+    const formData = {
+      name,
+      email,
+      title,
+      types,
+      deadline,
+      location,
+      category,
+      photo,
+      description,
+    };
+
+    console.log(formData);
+    try {
+      await axios.put(`http://localhost:5000/updateItem/${post._id}`, formData);
+      fetchAllItems();
+      document.getElementById("my_modal_1").close();
+      Swal.fire("Success!", "Your item has been updated.", "success");
+    } catch {
+      error;
+      console.log(error);
+    }
+  };
+
+  // useEffect(() => {
+  //   fetchJobData();
+  // }, [id]);
+
+  // const handleSpecificPost = (id) => {
+  //   console.log(id);
+
+  //   const fetchJobData = async () => {
+  //     const { data } = await axios.get(
+  //       `http://localhost:5000/allLostAndFoundItem/${id}`
+  //     );
+  //     setJob(data);
+  //     setStartDate(new Date(data.deadline));
+  //   };
+  // };
+  const fetchJobData = async (id) => {
+    const { data } = await axios.get(
+      `http://localhost:5000/allLostAndFoundItem/${id}`
+    );
+    setPost(data);
+    setStartDate(new Date(data.deadline));
+  };
+
+  const handleSpecificPost = (id) => {
+    console.log(id);
+    fetchJobData(id);
+  };
+
+  console.log(post);
   return (
     <div className="w-11/12 mx-auto my-10">
       {/* Open the modal using document.getElementById('ID').showModal() method */}
@@ -59,7 +126,7 @@ const ManageMyItems = () => {
       </button> */}
       <dialog id="my_modal_1" className="modal">
         <div className="modal-box">
-          <form className="card-body w-full">
+          <form onSubmit={handleUpdatePost} className="card-body w-full">
             <div className="flex  flex-col  gap-3 items-center">
               <div className="form-control w-full">
                 <label className="label">
@@ -98,6 +165,7 @@ const ManageMyItems = () => {
                 <input
                   type="text"
                   name="title"
+                  defaultValue={post.title}
                   placeholder="Enter item title"
                   className="input input-bordered rounded-none  "
                   required
@@ -109,6 +177,7 @@ const ManageMyItems = () => {
                 </label>
                 <select
                   name="types"
+                  defaultValue={post.types}
                   id=""
                   className="input input-bordered rounded-none  "
                 >
@@ -136,6 +205,7 @@ const ManageMyItems = () => {
                   </span>
                 </label>
                 <input
+                  defaultValue={post.location}
                   type="text"
                   name="location"
                   placeholder="Enter your Location "
@@ -152,6 +222,7 @@ const ManageMyItems = () => {
                 </label>
                 <select
                   name="category"
+                  defaultValue={post.category}
                   id=""
                   className="input input-bordered rounded-none  "
                 >
@@ -169,6 +240,7 @@ const ManageMyItems = () => {
                   <span className="label-text">Image</span>
                 </label>
                 <input
+                  defaultValue={post.photo}
                   type="text"
                   name="photo"
                   placeholder="Enter image URL"
@@ -182,6 +254,7 @@ const ManageMyItems = () => {
                 <span className="label-text">Description</span>
               </label>
               <textarea
+                defaultValue={post.description}
                 rows="8"
                 name="description"
                 placeholder="Enter your description "
@@ -190,28 +263,25 @@ const ManageMyItems = () => {
             </div>
             {/* kgfjhkfghgjf */}
 
-            {/* <div className="form-control mt-6">
+            <div className="form-control mt-6">
               <input
                 type="submit"
-                value=" Add Post "
+                value=" Update Post "
                 className="bg-teal-600 py-2 rounded-sm font-semibold  text-white cursor-pointer"
               ></input>
-            </div> */}
+            </div>
           </form>
           {/* <p className="py-4">
             Press ESC key or click the button below to close
           </p> */}
 
-          <div className="modal-action" className="text-center px-8">
+          {/* <div className="modal-action text-center px-8">
             <form method="dialog">
-              {/* if there is a button in form, it will close the modal */}
-              {/* <div className="flex justify-center items-center bg-teal-600"> */}
               <button className="bg-teal-600  text-white    py-2 px-4 w-full">
-                Update post
+                cencel
               </button>
-              {/* </div> */}
             </form>
-          </div>
+          </div> */}
         </div>
       </dialog>
       <div className="overflow-x-auto border rounded-lg border-teal-600">
@@ -239,14 +309,17 @@ const ManageMyItems = () => {
                   <td>{myItem.category}</td>
                   <td>{myItem.location}</td>
                   <td className="flex items-center gap-5">
-                    <button
-                      onClick={() =>
-                        document.getElementById("my_modal_1").showModal()
-                      }
-                      className="text-green-400 text-xl"
-                    >
-                      <GrEdit />
-                    </button>
+                    <Link>
+                      <button
+                        onClick={() => {
+                          document.getElementById("my_modal_1").showModal();
+                          handleSpecificPost(myItem._id);
+                        }}
+                        className="text-green-400 text-xl"
+                      >
+                        <GrEdit />
+                      </button>
+                    </Link>
                     <button
                       onClick={() => handleDeleteLostAndFoundItem(myItem._id)}
                       className="text-red-400 text-xl"
