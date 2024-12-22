@@ -8,6 +8,7 @@ import AddLostAndFoundItem from "../pages/AddLostAndFoundItem";
 import AllRecoveredItems from "../pages/AllRecoveredItems";
 import ManageMyItems from "../pages/ManageMyItems";
 import Home from "../pages/Home";
+import LostAndFoundDetails from "../pages/LostAndFoundDetails";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: "/manageMyItems",
         element: <ManageMyItems></ManageMyItems>,
+      },
+      {
+        path: "/lostAndFoundDetails/:id",
+        element: <LostAndFoundDetails></LostAndFoundDetails>,
       },
     ],
   },
