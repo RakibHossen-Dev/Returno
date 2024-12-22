@@ -29,13 +29,13 @@ const Login = () => {
     <div className="my-10">
       <div className="w-11/12 mx-auto">
         <div className="min-h-screen flex justify-center items-center">
-          <div className="card shadow-lg dark:border dark:border-orange-500 w-full max-w-lg shrink-0 rounded-none py-4 px-2 md:p-10 ">
-            <h2 className="text-center dark:text-white mb-3 text-2xl font-semibold">
+          <div className="card shadow-lg dark:border  w-full max-w-lg shrink-0 rounded-none py-4 px-2 md:p-10 ">
+            <h2 className="text-center  mb-3 text-2xl font-semibold">
               Login your account
             </h2>
             <button
               onClick={handleLoginWithGoogle}
-              className="border my-3 py-2 border-black dark:border-orange-500 mx-8  flex gap-2 items-center justify-center"
+              className="border my-3 py-2 border-black  mx-8  flex gap-2 items-center justify-center"
             >
               <FcGoogle className="text-xl " />
               <p className="dark:text-white">Login With Google</p>
@@ -45,7 +45,7 @@ const Login = () => {
             <form onSubmit={handlewithLogin} className="card-body">
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text dark:text-orange-500">Email</span>
+                  <span className="label-text ">Email</span>
                 </label>
                 <input
                   type="email"
@@ -58,9 +58,7 @@ const Login = () => {
               </div>
               <div className="form-control relative">
                 <label className="label">
-                  <span className="label-text dark:text-orange-500">
-                    Password
-                  </span>
+                  <span className="label-text ">Password</span>
                 </label>
                 <input
                   // type={showPassword ? "text" : "password"}
