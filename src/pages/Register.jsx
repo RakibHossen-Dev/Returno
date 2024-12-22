@@ -1,9 +1,15 @@
+import { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
+import { authContext } from "../context/AuthProvider";
 
 const Register = () => {
+  const [error, setError] = useState("");
+  const { handleGoogleLogin, manageProfile, handleRegister } =
+    useContext(authContext);
   const handleRegisterwithEmail = (e) => {
     e.preventDefault();
+    setError("");
     const form = e.target;
     const name = form.name.value;
     const photo = form.photo.value;
@@ -11,6 +17,28 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
     console.log(name, photo, email, password);
+    const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+
+    if (!passwordRegex.test(password)) {
+      setError(
+        "Password must be 6 characters, with at least 1 uppercase, 1 lowercase, 1 number."
+      );
+      return;
+    }
+
+    // console.log(error);
+    handleRegister(email, password)
+      .then((result) => {
+        manageProfile(name, photo);
+        const newUser = { name, email };
+      })
+      .catch((error) => {
+        toast.warning(error.message || "Something went wrong!");
+      });
+  };
+
+  const handleLoginWithGoogle = () => {
+    handleGoogleLogin();
   };
   return (
     <div className="my-8 w-11/12 mx-auto">
@@ -21,6 +49,7 @@ const Register = () => {
           </h2>
           <button
             // onClick={handleLoginWithGoogle}
+            onClick={handleLoginWithGoogle}
             className="border my-3 py-2 border-black mx-8   flex gap-2 items-center justify-center"
           >
             <FcGoogle className="text-xl" />
@@ -86,7 +115,7 @@ const Register = () => {
                 {/* {showPassword ? <FaEyeSlash /> : <FaRegEye />} */}
               </button>
             </div>
-            {/* {error && <p className="text-sm text-red-500">{error}</p>} */}
+            {error && <p className="text-sm text-red-500">{error}</p>}
             <div className="form-control mt-6">
               <button className="py-2 rounded-sm text-white bg-teal-600">
                 Register

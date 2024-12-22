@@ -1,7 +1,11 @@
+import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
+import { authContext } from "../context/AuthProvider";
+import toast from "react-hot-toast";
 
 const Login = () => {
+  const { handleGoogleLogin, handleLogin } = useContext(authContext);
   const handlewithLogin = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -9,6 +13,17 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
     console.log(email, password);
+    handleLogin(email, password)
+      .then((res) => {
+        toast.success("🎉 Login Successful! Welcome back to our platform.");
+      })
+      .catch((err) => {
+        toast.error("Email or password invalid");
+      });
+  };
+
+  const handleLoginWithGoogle = () => {
+    handleGoogleLogin();
   };
   return (
     <div className="my-10">
@@ -19,7 +34,7 @@ const Login = () => {
               Login your account
             </h2>
             <button
-              // onClick={handleLoginWithGoogle}
+              onClick={handleLoginWithGoogle}
               className="border my-3 py-2 border-black dark:border-orange-500 mx-8  flex gap-2 items-center justify-center"
             >
               <FcGoogle className="text-xl " />
