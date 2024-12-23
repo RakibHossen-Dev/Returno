@@ -35,12 +35,12 @@ const ManageMyItems = () => {
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
     }).then(async (result) => {
-      const { data } = await axios.delete(
-        `http://localhost:5000/deleteLostAndFoundItem/${id}`
-      );
-      console.log(data);
-      fetchAllItems();
       if (result.isConfirmed) {
+        const { data } = await axios.delete(
+          `http://localhost:5000/deleteLostAndFoundItem/${id}`
+        );
+        console.log(data);
+        fetchAllItems();
         Swal.fire({
           title: "Deleted!",
           text: "Your Lost and Found item has been deleted.",
@@ -297,12 +297,17 @@ const ManageMyItems = () => {
             </tr>
           </thead>
           {/* row 1 */}
-          {myItems.length === 0 ? (
-            <h3 className="text-center my-10">No Data Found</h3>
-          ) : (
-            <tbody>
-              {/* <> */}
-              {myItems.map((myItem, idx) => (
+          <tbody>
+            {myItems.length === 0 ? (
+              <tr>
+                <td colSpan="6">
+                  <h3 className="text-center my-20 text-xl font-bold text-gray-600">
+                    No Data Found
+                  </h3>
+                </td>
+              </tr>
+            ) : (
+              myItems.map((myItem, idx) => (
                 <tr>
                   <th>{idx + 1}</th>
                   <td>{myItem.title}</td>
@@ -328,10 +333,9 @@ const ManageMyItems = () => {
                     </button>
                   </td>
                 </tr>
-              ))}
-              {/* </> */}
-            </tbody>
-          )}
+              ))
+            )}
+          </tbody>
         </table>
       </div>
     </div>

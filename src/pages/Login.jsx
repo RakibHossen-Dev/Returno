@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import { authContext } from "../context/AuthProvider";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
   const { handleGoogleLogin, handleLogin } = useContext(authContext);
@@ -15,7 +15,7 @@ const Login = () => {
     console.log(email, password);
     handleLogin(email, password)
       .then((res) => {
-        toast.success("🎉 Login Successful! Welcome back to our platform.");
+        toast.success(" Login Successful!");
       })
       .catch((err) => {
         toast.error("Email or password invalid");
@@ -99,6 +99,7 @@ const Login = () => {
           </div>
         </div>
         {/* <ToastContainer /> */}
+        <Toaster></Toaster>
       </div>
     </div>
   );

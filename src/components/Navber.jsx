@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import returno from "../assets/returno_logo.png";
 import { useContext } from "react";
 import { authContext } from "../context/AuthProvider";
+import toast, { Toaster } from "react-hot-toast";
 
 const Navber = () => {
   const { user, handleLogout } = useContext(authContext);
@@ -16,6 +17,10 @@ const Navber = () => {
     </>
   );
 
+  const LogOut = () => {
+    handleLogout();
+    toast.success("Successfully logout");
+  };
   return (
     <div className="shadow-sm border-b">
       <div className="navbar w-11/12 mx-auto">
@@ -92,7 +97,7 @@ const Navber = () => {
           )}
           {user ? (
             <button
-              onClick={handleLogout}
+              onClick={LogOut}
               className="py-1 px-4 bg-teal-600 text-white rounded-md"
             >
               Logout
@@ -107,6 +112,7 @@ const Navber = () => {
           )}
         </div>
       </div>
+      <Toaster />
     </div>
   );
 };

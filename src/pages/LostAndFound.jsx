@@ -45,22 +45,26 @@ const LostAndFound = () => {
       </label>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {items.map((item) => (
-          <div key={item._id} className="p-3 border rounded-lg">
-            <img className="w-full rounded-lg" src={item.photo} alt="" />
-            <h3 className="text-3xl font-semibold my-2">{item.title}</h3>
+          <div key={item._id} className="p-3 border rounded-lg space-y-2">
+            <img
+              className="w-full  lg:h-48 rounded-lg"
+              src={item.photo}
+              alt=""
+            />
+            <h3 className="text-2xl font-semibold my-2">{item.title}</h3>
             <p>
               <span className="font-semibold">Location: </span> {item.location}
             </p>
             <p>
               <span className="font-semibold">Category:</span> {item.category}
             </p>
-            <p className="mb-3">
+            <p className="pb-4">
               <span className="font-semibold">Date: </span>
               {format(new Date(item.deadline), "P")}
             </p>
             <Link
               to={`/lostAndFoundDetails/${item._id}`}
-              className="text-white py-1 px-6 hover:text-teal-600 bg-teal-600 rounded-sm mt-5 hover:bg-transparent border border-teal-600"
+              className="text-white  py-1 px-6 hover:text-teal-600 bg-teal-600 rounded-sm mt-5 hover:bg-transparent border border-teal-600"
             >
               Details
             </Link>

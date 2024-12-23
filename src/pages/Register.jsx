@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import { authContext } from "../context/AuthProvider";
+import toast, { Toaster } from "react-hot-toast";
 
 const Register = () => {
   const [error, setError] = useState("");
@@ -31,9 +32,10 @@ const Register = () => {
       .then((result) => {
         manageProfile(name, photo);
         const newUser = { name, email };
+        toast.success("Register successfully!");
       })
       .catch((error) => {
-        toast.warning(error.message || "Something went wrong!");
+        toast.error(error.message || "Something went wrong!");
       });
   };
 
@@ -130,6 +132,7 @@ const Register = () => {
           </p>
         </div>
         {/* <ToastContainer /> */}
+        <Toaster></Toaster>
       </div>
     </div>
   );

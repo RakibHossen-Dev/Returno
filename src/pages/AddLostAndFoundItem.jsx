@@ -4,6 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { authContext } from "../context/AuthProvider";
 import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 // import { toast, ToastContainer } from "react-toastify";
 
 const AddLostAndFoundItem = () => {
@@ -43,6 +44,8 @@ const AddLostAndFoundItem = () => {
     console.log(formData);
     try {
       await axios.post("http://localhost:5000/addLostAndFoundItem", formData);
+      form.reset();
+      toast.success("New item added");
     } catch {
       (err) => {
         console.log(err);
@@ -202,6 +205,7 @@ const AddLostAndFoundItem = () => {
         </form>
       </div>
       {/* <ToastContainer /> */}
+      <Toaster></Toaster>
     </div>
   );
 };
