@@ -37,6 +37,7 @@ const AddLostAndFoundItem = () => {
       category,
       photo,
       description,
+      status: "Pending",
     };
 
     console.log(formData);

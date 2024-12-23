@@ -9,6 +9,7 @@ import AllRecoveredItems from "../pages/AllRecoveredItems";
 import ManageMyItems from "../pages/ManageMyItems";
 import Home from "../pages/Home";
 import LostAndFoundDetails from "../pages/LostAndFoundDetails";
+import PrivateRoute from "../privetRoute/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -33,19 +34,35 @@ const router = createBrowserRouter([
       },
       {
         path: "/addLostAndFoundItem",
-        element: <AddLostAndFoundItem></AddLostAndFoundItem>,
+        element: (
+          <PrivateRoute>
+            <AddLostAndFoundItem></AddLostAndFoundItem>,
+          </PrivateRoute>
+        ),
       },
       {
         path: "/allRecoveredItems",
-        element: <AllRecoveredItems></AllRecoveredItems>,
+        element: (
+          <PrivateRoute>
+            <AllRecoveredItems></AllRecoveredItems>,
+          </PrivateRoute>
+        ),
       },
       {
         path: "/manageMyItems",
-        element: <ManageMyItems></ManageMyItems>,
+        element: (
+          <PrivateRoute>
+            <ManageMyItems></ManageMyItems>,
+          </PrivateRoute>
+        ),
       },
       {
         path: "/lostAndFoundDetails/:id",
-        element: <LostAndFoundDetails></LostAndFoundDetails>,
+        element: (
+          <PrivateRoute>
+            <LostAndFoundDetails></LostAndFoundDetails>,
+          </PrivateRoute>
+        ),
       },
     ],
   },

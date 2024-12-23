@@ -68,7 +68,7 @@ const LostAndFound = () => {
         ))}
       </div>
       <div className="my-10 justify-center flex items-center gap-2">
-        <button className="bg-teal-600 text-white py-1 flex items-center gap-2 px-3">
+        <button className="bg-teal-600 text-white py-1   flex items-center md:gap-2 px-1 md:px-3">
           <FaArrowLeftLong className="text-white" />
           Previes
         </button>
@@ -76,7 +76,7 @@ const LostAndFound = () => {
         <button className="bg-teal-600 text-white py-1 px-3">2</button>
         <button className="bg-teal-600 text-white py-1 px-3">3</button>
         <button className="bg-teal-600 text-white py-1 px-3">4</button>
-        <button className="bg-teal-600 text-white py-1 px-3 flex items-center gap-2 ">
+        <button className="bg-teal-600 text-white py-1 px-1 md:px-3 flex items-center md:gap-2 ">
           Next
           <FaArrowRightLong className="text-white" />
         </button>

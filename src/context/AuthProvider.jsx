@@ -16,18 +16,26 @@ const AuthProvider = ({ route }) => {
   const [loading, setLoading] = useState(true);
   //   console.log(route);
   const handleGoogleLogin = () => {
+    setLoading(true);
+
     return signInWithPopup(auth, googleProvider);
   };
 
   const handleRegister = (email, password) => {
+    setLoading(true);
+
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   const handleLogin = (email, password) => {
+    setLoading(true);
+
     return signInWithEmailAndPassword(auth, email, password);
   };
 
   const handleLogout = () => {
+    setLoading(true);
+
     return signOut(auth);
   };
 
