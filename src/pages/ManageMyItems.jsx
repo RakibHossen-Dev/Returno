@@ -315,7 +315,7 @@ const ManageMyItems = () => {
                           document.getElementById("my_modal_1").showModal();
                           handleSpecificPost(myItem._id);
                         }}
-                        className="text-green-400 text-xl"
+                        className="text-teal-400 text-xl"
                       >
                         <GrEdit />
                       </button>
