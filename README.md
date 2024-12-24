@@ -66,5 +66,10 @@ Returno is a Lost and Found website designed to connect individuals who have los
 - `react-toastify`
 - `sweetalert2`
 - `react datepicker`
+- `react helmet`
+- `react date-fns`
+- `react react-tooltip`
+- `react iconst`
+- `framer-motion`
 
 Thank you for visiting Returno. Let's help lost items find their way back!
