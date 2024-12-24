@@ -21,7 +21,7 @@ const Banner = () => {
         >
           <SwiperSlide>
             <div
-              className="h-[600px] bg-cover bg-center  relative"
+              className="h-[600px] bg-cover bg-center   relative"
               style={{
                 backgroundImage: `url(${banner1})`,
               }}

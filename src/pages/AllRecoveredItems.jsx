@@ -18,7 +18,7 @@ const AllRecoveredItems = () => {
 
   const fetchAllItems = async () => {
     const { data } = await axios.get(
-      `http://localhost:5000/myRecoverd/${user?.email}`,
+      `https://returno-server.vercel.app/myRecoverd/${user?.email}`,
       { withCredentials: true }
     );
     setMyItems(data);

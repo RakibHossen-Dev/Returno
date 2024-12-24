@@ -13,7 +13,7 @@ const LatestFindAndLost = () => {
 
   const fetchLeatestItems = async () => {
     const { data } = await axios.get(
-      "http://localhost:5000/leatestLostAndFound"
+      "https://returno-server.vercel.app/leatestLostAndFound"
     );
     setItems(data);
   };

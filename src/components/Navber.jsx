@@ -23,7 +23,7 @@ const Navber = () => {
   };
   return (
     <div className="shadow-sm border-b">
-      <div className="navbar w-11/12 mx-auto">
+      <div className="navbar md:w-11/12 mx-auto px-3">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -66,7 +66,7 @@ const Navber = () => {
                 className="btn btn-ghost btn-circle avatar "
               >
                 <div
-                  className="w-10 rounded-full"
+                  className="w-10 rounded-full "
                   data-tooltip-id="my-tooltip"
                   data-tooltip-content={user?.displayName}
                 >
@@ -76,7 +76,6 @@ const Navber = () => {
                       user?.photoURL ||
                       "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
                     }
-                    // "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
                   />
                 </div>
               </div>
@@ -117,7 +116,7 @@ const Navber = () => {
         </div>
       </div>
       <Toaster />
-      <Tooltip id="my-tooltip" place="top" effect="solid" />
+      <Tooltip id="my-tooltip" place="top" effect="solid" className="z-50 " />
     </div>
   );
 };

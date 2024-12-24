@@ -21,8 +21,8 @@ const ManageMyItems = () => {
 
   const fetchAllItems = async () => {
     const { data } = await axios.get(
-      `http://localhost:5000/myItems/${user?.email}`,
-      // `http://localhost:5000/myItems?email=${user?.email}`,
+      `https://returno-server.vercel.app/myItems/${user?.email}`,
+      // `https://returno-server.vercel.app/myItems?email=${user?.email}`,
       { withCredentials: true }
     );
     setMyItems(data);
@@ -40,7 +40,7 @@ const ManageMyItems = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         const { data } = await axios.delete(
-          `http://localhost:5000/deleteLostAndFoundItem/${id}`
+          `https://returno-server.vercel.app/deleteLostAndFoundItem/${id}`
         );
         console.log(data);
         fetchAllItems();
@@ -79,7 +79,10 @@ const ManageMyItems = () => {
 
     console.log(formData);
     try {
-      await axios.put(`http://localhost:5000/updateItem/${post._id}`, formData);
+      await axios.put(
+        `https://returno-server.vercel.app/updateItem/${post._id}`,
+        formData
+      );
       fetchAllItems();
       document.getElementById("my_modal_1").close();
       Swal.fire("Success!", "Your item has been updated.", "success");
@@ -98,7 +101,7 @@ const ManageMyItems = () => {
 
   //   const fetchJobData = async () => {
   //     const { data } = await axios.get(
-  //       `http://localhost:5000/allLostAndFoundItem/${id}`
+  //       `https://returno-server.vercel.app/allLostAndFoundItem/${id}`
   //     );
   //     setJob(data);
   //     setStartDate(new Date(data.deadline));
@@ -106,7 +109,7 @@ const ManageMyItems = () => {
   // };
   const fetchJobData = async (id) => {
     const { data } = await axios.get(
-      `http://localhost:5000/allLostAndFoundItem/${id}`
+      `https://returno-server.vercel.app/allLostAndFoundItem/${id}`
     );
     setPost(data);
     setStartDate(new Date(data.deadline));

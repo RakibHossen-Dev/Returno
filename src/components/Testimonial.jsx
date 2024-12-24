@@ -44,7 +44,7 @@ const Testimonial = () => {
           >
             <li className="w-1/4 border ">
               <div className="shadow-custom  lg:p-14 p-6 rounded-sm space-y-5">
-                <div className="flex  items-center gap-2">
+                <div className="flex md:flex-row flex-col items-center gap-2">
                   <img
                     className="w-14 h-14 rounded-full border-4 border-teal-600"
                     // src={testimonial}
@@ -67,7 +67,7 @@ const Testimonial = () => {
             </li>
             <li className="w-1/4 border">
               <div className="shadow-custom  lg:p-14 p-6 rounded-sm space-y-5">
-                <div className="flex items-center gap-2">
+                <div className="flex md:flex-row flex-col items-center gap-2">
                   <img
                     className="w-14 h-14 rounded-full border-4 border-teal-600"
                     // src={testimonial}
@@ -90,7 +90,7 @@ const Testimonial = () => {
             </li>
             <li className="w-1/4 border">
               <div className="shadow-custom lg:p-14 p-6 rounded-sm space-y-5">
-                <div className="flex items-center gap-2">
+                <div className="flex md:flex-row flex-col items-center gap-2">
                   <img
                     className="w-14 h-14 rounded-full border-4 border-teal-600"
                     // src={testimonial}
@@ -113,7 +113,7 @@ const Testimonial = () => {
             </li>
             <li className="w-1/4 border">
               <div className="shadow-custom lg:p-14 p-6 rounded-sm space-y-5">
-                <div className="flex items-center gap-2">
+                <div className="flex md:flex-row flex-col items-center gap-2">
                   <img
                     className="w-14 h-14 rounded-full border-4 border-teal-600"
                     // src={testimonial}

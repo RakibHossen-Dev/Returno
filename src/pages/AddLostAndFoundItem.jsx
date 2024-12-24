@@ -45,9 +45,13 @@ const AddLostAndFoundItem = () => {
 
     console.log(formData);
     try {
-      await axios.post("http://localhost:5000/addLostAndFoundItem", formData, {
-        withCredentials: true,
-      });
+      await axios.post(
+        "https://returno-server.vercel.app/addLostAndFoundItem",
+        formData,
+        {
+          withCredentials: true,
+        }
+      );
       form.reset();
       toast.success("New item added");
     } catch {

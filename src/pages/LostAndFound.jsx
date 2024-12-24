@@ -15,7 +15,7 @@ const LostAndFound = () => {
 
   const fetchAllItems = async () => {
     const { data } = await axios.get(
-      `http://localhost:5000/allLostAndFoundItem?search=${search}`
+      `https://returno-server.vercel.app/allLostAndFoundItem?search=${search}`
     );
     setItems(data);
   };

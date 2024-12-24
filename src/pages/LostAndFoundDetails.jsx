@@ -19,7 +19,7 @@ const LostAndFoundDetails = () => {
 
   const fetchItemData = async () => {
     const { data } = await axios.get(
-      `http://localhost:5000/allLostAndFoundItem/${id}`
+      `https://returno-server.vercel.app/allLostAndFoundItem/${id}`
     );
     setItem(data);
   };
@@ -39,7 +39,10 @@ const LostAndFoundDetails = () => {
     const formData = { title, location, deadline, name, email, photo };
     console.log(formData);
     try {
-      await axios.post("http://localhost:5000/addRecoverd", formData);
+      await axios.post(
+        "https://returno-server.vercel.app/addRecoverd",
+        formData
+      );
       document.getElementById("my_modal_1").close();
     } catch {
       (err) => {
@@ -57,7 +60,9 @@ const LostAndFoundDetails = () => {
 
     // itemStatus
     try {
-      await axios.patch(`http://localhost:5000/itemStatus/${id}`, { status });
+      await axios.patch(`https://returno-server.vercel.app/itemStatus/${id}`, {
+        status,
+      });
       fetchItemData();
     } catch {
       (err) => {
@@ -69,7 +74,7 @@ const LostAndFoundDetails = () => {
   return (
     <div className="my-10">
       <div className="w-11/12 lg:w-1/2 mx-auto border rounded-lg p-5 space-y-3">
-        <img className="w-full h-80 rounded-lg " src={item.photo} alt="" />
+        <img className="w-full md:h-80 rounded-lg " src={item.photo} alt="" />
         {/* <h3 className="text-3xl font-semibold my-2">{item.title}</h3> */}
         <h3 className="text-3xl font-semibold my-2">
           <a className="justify-between">
@@ -202,20 +207,6 @@ const LostAndFoundDetails = () => {
                 ></input>
               </div>
             </form>
-            {/* Input Field */}
-            {/* <p className="py-4">
-              Press ESC key or click the button below to close
-            </p> */}
-            {/* <div className="modal-action" className="text-center">
-              <form method="dialog"> */}
-            {/* if there is a button in form, it will close the modal */}
-            {/* <div className="flex justify-center items-center bg-teal-600"> */}
-            {/* <button className="bg-teal-600  text-white mt-5   py-2 px-4 ">
-                  Submit
-                </button> */}
-            {/* </div> */}
-            {/* </form>
-            </div> */}
           </div>
         </dialog>
         {/* Modal------------ */}
