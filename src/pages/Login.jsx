@@ -3,6 +3,7 @@ import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import { authContext } from "../context/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
+import { Helmet } from "react-helmet";
 
 const Login = () => {
   const { handleGoogleLogin, handleLogin } = useContext(authContext);
@@ -27,6 +28,9 @@ const Login = () => {
   };
   return (
     <div className="my-10">
+      <Helmet>
+        <title>Returno | Login</title>
+      </Helmet>
       <div className="w-11/12 mx-auto">
         <div className="min-h-screen flex justify-center items-center">
           <div className="card shadow-lg dark:border  w-full max-w-lg shrink-0 rounded-none py-4 px-2 md:p-10 ">

@@ -3,7 +3,7 @@ import returno from "../assets/returno_logo.png";
 import { useContext } from "react";
 import { authContext } from "../context/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
-
+import { Tooltip } from "react-tooltip";
 const Navber = () => {
   const { user, handleLogout } = useContext(authContext);
   const links = (
@@ -65,7 +65,11 @@ const Navber = () => {
                 role="button"
                 className="btn btn-ghost btn-circle avatar "
               >
-                <div className="w-10 rounded-full">
+                <div
+                  className="w-10 rounded-full"
+                  data-tooltip-id="my-tooltip"
+                  data-tooltip-content={user?.displayName}
+                >
                   <img
                     alt="Tailwind CSS Navbar component"
                     src={
@@ -113,6 +117,7 @@ const Navber = () => {
         </div>
       </div>
       <Toaster />
+      <Tooltip id="my-tooltip" place="top" effect="solid" />
     </div>
   );
 };

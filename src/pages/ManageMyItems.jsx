@@ -7,6 +7,7 @@ import { GrEdit } from "react-icons/gr";
 import Swal from "sweetalert2";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { Helmet } from "react-helmet";
 
 const ManageMyItems = () => {
   const { user } = useContext(authContext);
@@ -20,7 +21,9 @@ const ManageMyItems = () => {
 
   const fetchAllItems = async () => {
     const { data } = await axios.get(
-      `http://localhost:5000/myItems/${user?.email}`
+      `http://localhost:5000/myItems/${user?.email}`,
+      // `http://localhost:5000/myItems?email=${user?.email}`,
+      { withCredentials: true }
     );
     setMyItems(data);
   };
@@ -117,6 +120,9 @@ const ManageMyItems = () => {
   console.log(post);
   return (
     <div className="w-11/12 mx-auto my-10">
+      <Helmet>
+        <title>Returno | Manage My Item</title>
+      </Helmet>
       {/* Open the modal using document.getElementById('ID').showModal() method */}
       {/* <button
         className="btn"
@@ -308,7 +314,7 @@ const ManageMyItems = () => {
               </tr>
             ) : (
               myItems.map((myItem, idx) => (
-                <tr>
+                <tr key={myItem._id}>
                   <th>{idx + 1}</th>
                   <td>{myItem.title}</td>
                   <td>{myItem.category}</td>

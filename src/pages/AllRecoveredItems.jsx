@@ -3,6 +3,7 @@ import { authContext } from "../context/AuthProvider";
 import axios from "axios";
 import { format } from "date-fns";
 import { RiLayoutGrid2Fill } from "react-icons/ri";
+import { Helmet } from "react-helmet";
 
 const AllRecoveredItems = () => {
   const { user } = useContext(authContext);
@@ -17,12 +18,16 @@ const AllRecoveredItems = () => {
 
   const fetchAllItems = async () => {
     const { data } = await axios.get(
-      `http://localhost:5000/myRecoverd/${user?.email}`
+      `http://localhost:5000/myRecoverd/${user?.email}`,
+      { withCredentials: true }
     );
     setMyItems(data);
   };
   return (
     <div className="w-11/12 mx-auto my-10">
+      <Helmet>
+        <title>Returno | All Recoverd Item</title>
+      </Helmet>
       <div className="text-end my-8">
         <button
           onClick={() => setTableRow(!tableRow)}

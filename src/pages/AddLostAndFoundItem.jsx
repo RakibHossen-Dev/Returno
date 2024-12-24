@@ -5,6 +5,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import { authContext } from "../context/AuthProvider";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
+import { Helmet } from "react-helmet";
+
 // import { toast, ToastContainer } from "react-toastify";
 
 const AddLostAndFoundItem = () => {
@@ -43,7 +45,9 @@ const AddLostAndFoundItem = () => {
 
     console.log(formData);
     try {
-      await axios.post("http://localhost:5000/addLostAndFoundItem", formData);
+      await axios.post("http://localhost:5000/addLostAndFoundItem", formData, {
+        withCredentials: true,
+      });
       form.reset();
       toast.success("New item added");
     } catch {
@@ -55,6 +59,9 @@ const AddLostAndFoundItem = () => {
 
   return (
     <div className="my-10">
+      <Helmet>
+        <title>Returno | Add Lost & Found Item</title>
+      </Helmet>
       <div className="min-h-screen flex flex-col justify-center items-center md:w-9/12 mx-auto bg-opacity-80 backdrop-blur-lg bg-teal-50 rounded-md p-4">
         <h3 className="text-3xl  text-center mb-3 font-semibold text-teal-600">
           Add Lost And Found Item

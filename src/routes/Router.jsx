@@ -10,11 +10,13 @@ import ManageMyItems from "../pages/ManageMyItems";
 import Home from "../pages/Home";
 import LostAndFoundDetails from "../pages/LostAndFoundDetails";
 import PrivateRoute from "../privetRoute/PrivateRoute";
+import NotFound from "../pages/NotFound";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
+    errorElement: <NotFound></NotFound>,
     children: [
       {
         path: "/",

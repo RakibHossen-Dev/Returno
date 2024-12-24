@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
+import { Helmet } from "react-helmet";
 
 const LostAndFound = () => {
   const [items, setItems] = useState([]);
@@ -23,6 +24,9 @@ const LostAndFound = () => {
 
   return (
     <div className="w-11/12 mx-auto my-10">
+      <Helmet>
+        <title>Returno | Lost & Found</title>
+      </Helmet>
       <label className="input rounded-none border-teal-600 flex items-center  mx-auto md:w-80  gap-2 my-10">
         <input
           type="text"

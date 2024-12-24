@@ -9,6 +9,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import auth from "../firebase/firebase.config";
+import axios from "axios";
 export const authContext = createContext();
 const AuthProvider = ({ route }) => {
   const googleProvider = new GoogleAuthProvider();
@@ -62,15 +63,31 @@ const AuthProvider = ({ route }) => {
       console.log(currentUser);
       if (currentUser) {
         setUser(currentUser);
+
+        if (currentUser?.email) {
+          const user = { email: currentUser.email };
+          axios
+            .post("http://localhost:5000/jwt", user, { withCredentials: true })
+            .then((res) => {
+              console.log(res.data);
+            });
+        }
       } else {
+        axios
+          .post("http://localhost:5000/logout", {}, { withCredentials: true })
+          .then((res) => {
+            console.log("Logout", res.data);
+            setLoading(false);
+          });
         setUser(null);
       }
       setLoading(false);
-      return () => {
-        unsubscribe();
-      };
     });
+    return () => {
+      unsubscribe();
+    };
   }, []);
+
   return (
     <div>
       <authContext.Provider value={authInfo}>{route}</authContext.Provider>

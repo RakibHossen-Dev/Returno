@@ -3,6 +3,7 @@ import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import { authContext } from "../context/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
+import { Helmet } from "react-helmet";
 
 const Register = () => {
   const [error, setError] = useState("");
@@ -44,6 +45,9 @@ const Register = () => {
   };
   return (
     <div className="my-8 w-11/12 mx-auto">
+      <Helmet>
+        <title>Returno | Register</title>
+      </Helmet>
       <div className="min-h-screen flex justify-center items-center">
         <div className="card shadow-lg dark:border  w-full max-w-lg shrink-0 rounded-none py-4 px-2 md:p-10">
           <h2 className="text-center text-2xl font-semibold ">
