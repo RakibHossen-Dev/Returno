@@ -60,6 +60,23 @@ const Category = () => {
         navigation={true}
         modules={[Pagination, Navigation]}
         className="mySwiper"
+        breakpoints={{
+          // when window width is >= 0px
+          0: {
+            slidesPerView: 1, // Show 1 slide on mobile
+            centeredSlides: false,
+          },
+          // when window width is >= 768px
+          768: {
+            slidesPerView: 2, // Show 2 slides on tablets
+            centeredSlides: false,
+          },
+          // when window width is >= 1024px
+          1024: {
+            slidesPerView: 3, // Show 3 slides on desktops
+            centeredSlides: true,
+          },
+        }}
       >
         <SwiperSlide>
           <div className="bg-white p-2 border flex flex-col justify-center items-center rounded-md">
