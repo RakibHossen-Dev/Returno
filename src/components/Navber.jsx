@@ -22,7 +22,7 @@ const Navber = () => {
     toast.success("Successfully logout");
   };
   return (
-    <div className="shadow-sm border-b">
+    <div className="shadow-sm border-b fixed w-full bg-white top-0 left-0 z-50">
       <div className="navbar md:w-11/12 mx-auto px-3">
         <div className="navbar-start">
           <div className="dropdown">

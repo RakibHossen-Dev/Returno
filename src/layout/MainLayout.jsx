@@ -6,7 +6,7 @@ const MainLayout = () => {
   return (
     <div className="font-poppins">
       <Navber></Navber>
-      <div className="min-h-[500px]">
+      <div className="min-h-[500px] mt-28">
         <Outlet></Outlet>
       </div>
       <Footer></Footer>

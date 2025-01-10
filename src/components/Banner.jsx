@@ -5,9 +5,10 @@ import banner2 from "../assets/banner2.png";
 import banner3 from "../assets/banner3.png";
 import "swiper/css";
 import "swiper/css/pagination";
+import { Link } from "react-router-dom";
 const Banner = () => {
   return (
-    <div>
+    <div className="-mt-10">
       <div>
         <Swiper
           modules={[Pagination, Autoplay]}
@@ -37,7 +38,7 @@ const Banner = () => {
                   </p>
 
                   <button className="text-white py-2 px-8 bg-teal-600 rounded-lg mt-5 hover:bg-transparent border border-teal-600">
-                    Report Lost Item
+                    <Link to="/addLostAndFoundItem">Report Lost Item</Link>
                   </button>
                 </div>
               </div>
@@ -61,7 +62,7 @@ const Banner = () => {
                     can make a difference.
                   </p>
                   <button className="text-white py-2 px-8 bg-teal-600 rounded-lg mt-5 hover:bg-transparent border border-teal-600">
-                    Report Lost Item
+                    <Link to="/addLostAndFoundItem">Report Lost Item</Link>
                   </button>
                 </div>
               </div>
@@ -85,7 +86,7 @@ const Banner = () => {
                     us to reconnect lives with belongings.
                   </p>
                   <button className="text-white py-2 px-8 bg-teal-600 rounded-lg mt-5 hover:bg-transparent border border-teal-600">
-                    Report Lost Item
+                    <Link to="/addLostAndFoundItem">Report Lost Item</Link>
                   </button>
                 </div>
               </div>

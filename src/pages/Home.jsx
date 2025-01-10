@@ -6,6 +6,7 @@ import HowItWork from "../components/HowItWork";
 import { Helmet } from "react-helmet";
 // import MotionPath from "../components/MotionPath";
 import ScrollLinked from "../components/ScrollLinked";
+import Category from "../components/Category";
 const Home = () => {
   return (
     <div>
@@ -15,6 +16,7 @@ const Home = () => {
       <ScrollLinked />
       <Banner></Banner>
       <LatestFindAndLost></LatestFindAndLost>
+      <Category></Category>
       {/* <MotionPath></MotionPath> */}
       <HowItWork></HowItWork>
       <Testimonial></Testimonial>
