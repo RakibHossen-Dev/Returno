@@ -14,6 +14,9 @@ const Navber = () => {
       <li>
         <Link to="lostAndFound">Lost & Found Items</Link>
       </li>
+      <li>
+        <Link to="blogs">Blogs</Link>
+      </li>
     </>
   );
 

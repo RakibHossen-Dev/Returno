@@ -27,6 +27,7 @@ const LostAndFound = () => {
       <Helmet>
         <title>Returno | Lost & Found</title>
       </Helmet>
+
       <label className="input rounded-none border-teal-600 flex items-center  mx-auto md:w-80  gap-2 my-10">
         <input
           type="text"

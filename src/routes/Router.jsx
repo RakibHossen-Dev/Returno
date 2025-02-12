@@ -11,6 +11,8 @@ import Home from "../pages/Home";
 import LostAndFoundDetails from "../pages/LostAndFoundDetails";
 import PrivateRoute from "../privetRoute/PrivateRoute";
 import NotFound from "../pages/NotFound";
+import Blogs from "../pages/Blogs";
+import BlogsDetails from "../pages/BlogsDetails";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +31,14 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+      },
+      {
+        path: "/blogs",
+        element: <Blogs></Blogs>,
+      },
+      {
+        path: "/blogs/:id",
+        element: <BlogsDetails></BlogsDetails>,
       },
       {
         path: "/lostAndFound",
