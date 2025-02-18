@@ -14,6 +14,7 @@ const ManageMyItems = () => {
   const [myItems, setMyItems] = useState([]);
   const [startDate, setStartDate] = useState(new Date());
   const [post, setPost] = useState({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchAllItems();
@@ -26,6 +27,7 @@ const ManageMyItems = () => {
       { withCredentials: true }
     );
     setMyItems(data);
+    setLoading(false);
   };
   // console.log(myItems);
   const handleDeleteLostAndFoundItem = async (id) => {
@@ -293,60 +295,66 @@ const ManageMyItems = () => {
           </div> */}
         </div>
       </dialog>
-      <div className="overflow-x-auto border rounded-lg border-teal-600">
-        <table className="table">
-          {/* head */}
-          <thead>
-            <tr className="bg-teal-600 text-white ">
-              <th></th>
-              <th className="text-lg font-semibold">Title</th>
-              <th className="text-lg font-semibold">Category</th>
-              <th className="text-lg font-semibold">Location</th>
-              <th className="text-lg font-semibold">Action</th>
-            </tr>
-          </thead>
-          {/* row 1 */}
-          <tbody>
-            {myItems.length === 0 ? (
-              <tr>
-                <td colSpan="6">
-                  <h3 className="text-center my-20 text-xl font-bold text-gray-600">
-                    No Data Found
-                  </h3>
-                </td>
+      {loading ? (
+        <div className=" h-screen flex flex-col justify-center items-center">
+          <span className="loading text-teal-500 loading-spinner loading-lg"></span>
+        </div>
+      ) : (
+        <div className="overflow-x-auto border rounded-lg border-teal-600">
+          <table className="table">
+            {/* head */}
+            <thead>
+              <tr className="bg-teal-600 text-white ">
+                <th></th>
+                <th className="text-lg font-semibold">Title</th>
+                <th className="text-lg font-semibold">Category</th>
+                <th className="text-lg font-semibold">Location</th>
+                <th className="text-lg font-semibold">Action</th>
               </tr>
-            ) : (
-              myItems.map((myItem, idx) => (
-                <tr key={myItem._id}>
-                  <th>{idx + 1}</th>
-                  <td>{myItem.title}</td>
-                  <td>{myItem.category}</td>
-                  <td>{myItem.location}</td>
-                  <td className="flex items-center gap-5">
-                    <Link>
-                      <button
-                        onClick={() => {
-                          document.getElementById("my_modal_1").showModal();
-                          handleSpecificPost(myItem._id);
-                        }}
-                        className="text-teal-400 text-xl"
-                      >
-                        <GrEdit />
-                      </button>
-                    </Link>
-                    <button
-                      onClick={() => handleDeleteLostAndFoundItem(myItem._id)}
-                      className="text-red-400 text-xl"
-                    >
-                      <RiDeleteBin6Line />
-                    </button>
+            </thead>
+            {/* row 1 */}
+            <tbody>
+              {myItems.length === 0 ? (
+                <tr>
+                  <td colSpan="6">
+                    <h3 className="text-center my-20 text-xl font-bold text-gray-600">
+                      No Data Found
+                    </h3>
                   </td>
                 </tr>
-              ))
-            )}
-          </tbody>
-        </table>
-      </div>
+              ) : (
+                myItems.map((myItem, idx) => (
+                  <tr key={myItem._id}>
+                    <th>{idx + 1}</th>
+                    <td>{myItem.title}</td>
+                    <td>{myItem.category}</td>
+                    <td>{myItem.location}</td>
+                    <td className="flex items-center gap-5">
+                      <Link>
+                        <button
+                          onClick={() => {
+                            document.getElementById("my_modal_1").showModal();
+                            handleSpecificPost(myItem._id);
+                          }}
+                          className="text-teal-400 text-xl"
+                        >
+                          <GrEdit />
+                        </button>
+                      </Link>
+                      <button
+                        onClick={() => handleDeleteLostAndFoundItem(myItem._id)}
+                        className="text-red-400 text-xl"
+                      >
+                        <RiDeleteBin6Line />
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 };

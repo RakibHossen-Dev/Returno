@@ -9,6 +9,8 @@ const AllRecoveredItems = () => {
   const { user } = useContext(authContext);
   const [myItems, setMyItems] = useState([]);
   const [tableRow, setTableRow] = useState(true);
+  const [loading, setLoading] = useState(true);
+
   // const [startDate, setStartDate] = useState(new Date());
   // const [post, setPost] = useState({});
 
@@ -22,6 +24,7 @@ const AllRecoveredItems = () => {
       { withCredentials: true }
     );
     setMyItems(data);
+    setLoading(false);
   };
   return (
     <div className="w-11/12 mx-auto my-10">
@@ -39,43 +42,49 @@ const AllRecoveredItems = () => {
       {/* <h3>This is AllRecoveredItems {myItems.length}</h3> */}
       {tableRow ? (
         <div className="overflow-x-auto border rounded-lg border-teal-600">
-          <table className="table">
-            {/* head */}
-            <thead className="bg-teal-600 text-white">
-              <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Recover Date</th>
-                <th>Location</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              {myItems.length === 0 ? (
-                // <tr className="text-center my-10">No Data Found</tr>
+          {loading ? (
+            <div className=" h-screen flex flex-col justify-center items-center">
+              <span className="loading text-teal-500 loading-spinner loading-lg"></span>
+            </div>
+          ) : (
+            <table className="table">
+              {/* head */}
+              <thead className="bg-teal-600 text-white">
                 <tr>
-                  <td colSpan="6">
-                    <h3 className="text-center my-20 text-xl font-bold text-gray-600">
-                      No Data Found
-                    </h3>
-                  </td>
+                  <th>Id</th>
+                  <th>Title</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Recover Date</th>
+                  <th>Location</th>
                 </tr>
-              ) : (
-                myItems.map((myItem, idx) => (
-                  <tr key={myItem._id}>
-                    <th>{idx + 1}</th>
-                    <td>{myItem.title}</td>
-                    <td>{myItem.name}</td>
-                    <td>{myItem.email}</td>
-                    <td>{format(new Date(myItem.deadline), "P")}</td>
-                    <td>{myItem.location}</td>
+              </thead>
+
+              <tbody>
+                {myItems.length === 0 ? (
+                  // <tr className="text-center my-10">No Data Found</tr>
+                  <tr>
+                    <td colSpan="6">
+                      <h3 className="text-center my-20 text-xl font-bold text-gray-600">
+                        No Data Found
+                      </h3>
+                    </td>
                   </tr>
-                ))
-              )}
-            </tbody>
-          </table>
+                ) : (
+                  myItems.map((myItem, idx) => (
+                    <tr key={myItem._id}>
+                      <th>{idx + 1}</th>
+                      <td>{myItem.title}</td>
+                      <td>{myItem.name}</td>
+                      <td>{myItem.email}</td>
+                      <td>{format(new Date(myItem.deadline), "P")}</td>
+                      <td>{myItem.location}</td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          )}
         </div>
       ) : (
         <div className="grid md:grid-cols-2 grid-cols-1 gap-6 lg:grid-cols-3">

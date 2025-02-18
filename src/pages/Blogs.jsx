@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 
 const Blogs = () => {
@@ -24,6 +25,9 @@ const Blogs = () => {
 
   return (
     <div className="max-w-6xl mx-auto p-6">
+      <Helmet>
+        <title>Returno | Blogs</title>
+      </Helmet>
       <h1 className="text-4xl font-bold text-center text-gray-800 mb-6">
         Returno Blogs
       </h1>
@@ -45,7 +49,9 @@ const Blogs = () => {
       </div>
 
       {loading ? (
-        <div className="text-center text-xl font-semibold">Loading...</div>
+        <div className=" h-screen flex flex-col justify-center items-center">
+          <span className="loading text-teal-500 loading-spinner loading-lg"></span>
+        </div>
       ) : (
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredBlogs.map((blog) => (
